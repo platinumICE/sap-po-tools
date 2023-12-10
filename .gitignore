@@ -19,3 +19,14 @@
 
 # Go workspace file
 go.work
+
+
+# configuration files
+*.txt
+
+# downloader work result
+export/
+
+# local test data (not for public)
+testdata/
+*_test.go
