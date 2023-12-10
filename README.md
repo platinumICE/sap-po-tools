@@ -11,4 +11,4 @@ This tool allows to download SAP PO message payloads and attachments given list 
 
 This tool is able to download messages in parallel, by default two HTTP threads are used. Number of threads is configurable.
 
-More details are available in [separate README page](/platinumICE/sap-po-tools/tree/main/downloader#readme).
+More details are available in [separate README page](/downloader/README.md).
