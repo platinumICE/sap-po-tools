@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+var ExportComment string
+
 func prepareFileWriter(options RuntimeConfiguration, connect ConnectionOptions) error {
 	if options.StatisticsOnly {
 		// nothing to do here
@@ -25,6 +27,7 @@ func prepareFileWriter(options RuntimeConfiguration, connect ConnectionOptions) 
 	}
 
 	dt := time.Now().Format("20060102150405")
+	dtcomment := time.Now().Format("2006-01-02 15:04:05")
 
 	path := fmt.Sprintf("%s/%s/%s/", options.OutputDirectory, url.Hostname(), dt)
 
@@ -37,6 +40,8 @@ func prepareFileWriter(options RuntimeConfiguration, connect ConnectionOptions) 
 	if err != nil {
 		return errors.New(fmt.Sprintf("Cannot change current directory to [%s]: %s", path, err))
 	}
+
+	ExportComment = fmt.Sprintf("Source      : %s\nExtracted on: %s", url.Hostname(), dtcomment)
 
 	return nil
 }

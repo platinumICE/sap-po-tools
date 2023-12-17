@@ -20,6 +20,7 @@ type RuntimeConfiguration struct {
 	GroupOutputBy       OutputGroup
 	OpenTargetDirectory bool
 	ZipMode             OutputZipMode
+	NoComment           bool
 	DownloadThreads     int
 	SaveRawContent      bool
 	SaveXIHeader        bool
@@ -84,10 +85,13 @@ func ParseLaunchOptions() (RuntimeConfiguration, error) {
 	messageIDs := flag.String("ids", "", "Required. Path to a list of message IDs to download, one message per line.")
 	logVersions := flag.String("log", LogVersionSpecialAll,
 		fmt.Sprintf(
-			"Comma-separated list of log versions which must be exported. Supports standard version names (BI, MS, etc) and special values (%s, %s, %s). See details in documentation. ",
+			"Comma-separated list of log versions which must be exported. Supports standard version names (BI, MS, etc) and special values (%s, %s, %s, %s, %s). See details in documentation. ",
 			LogVersionSpecialAll,
 			LogVersionSpecialNone,
-			LogVersionSpecialJSON))
+			LogVersionSpecialJSON,
+			LogVersionSpecialJSONSender,
+			LogVersionSpecialJSONReceiver,
+		))
 
 	stageVersions := flag.String("stage", StageVersionSpecialAll,
 		fmt.Sprintf(
@@ -104,6 +108,7 @@ func ParseLaunchOptions() (RuntimeConfiguration, error) {
 	zipMode := flag.String("zip", "all", "Mode of compression for exported payloads. Available options are: (n)one, (f)ile, (a)ll")
 	flag.IntVar(&options.DownloadThreads, "threads", 2, "Number of parallel HTTP download threads")
 	flag.BoolVar(&options.StatisticsOnly, "statsonly", false, "If specified, only statistics on available message versions will be displayed. No actual download will happen.")
+	flag.BoolVar(&options.NoComment, "nocomment", false, "If specified, no text comment will be added to ZIP file (applies to -zip all).")
 
 	//////////////
 

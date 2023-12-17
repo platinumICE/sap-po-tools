@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	ToolVersion string = "1.0.0 (2023-12-10)"
+	ToolVersion string = "1.1.0 (2023-12-17)"
 	ToolRepo           = "https://github.com/platinumICE/sap-po-tools"
 	ToolAuthor         = "Marat Bareev"
 )

@@ -27,6 +27,14 @@ func FileWriterModeAll(options RuntimeConfiguration, version <-chan XIMessagePay
 	w := zip.NewWriter(file)
 	defer w.Close()
 
+	if options.NoComment == false {
+		err = w.SetComment(ExportComment)
+		if err != nil {
+			fmt.Printf("Failed creating file [%s]: %s\n", newFilename, err)
+			os.Exit(8)
+		}
+	}
+
 	for entry := range version {
 
 		for _, item := range entry.Parts {
