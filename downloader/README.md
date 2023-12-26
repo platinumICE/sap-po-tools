@@ -44,6 +44,8 @@ Tool can be run with following command-line parameters:
 	      Number of parallel HTTP download threads (default 2)
 	-statsonly
 	      If specified, only statistics on available message versions will be displayed. No actual download will happen.
+	-nocomment
+		  If specified, no text comment will be added to ZIP file (applies to -zip all)
 
 ## Message ID list file format
 
@@ -146,4 +148,11 @@ Specified if export should be compressed or not. Available options are (not case
 		All downloaded files will be placed inside one ZIP archive. Subfolder structure (see -groupby) will be preserved.
 
 
-Default value is **all**.
+Default value is **all**. If ZIP file is used for output, comment will be added in the format:
+
+	Source      : <hostname>
+	Extracted on: <current datetime>
+
+
+
+
